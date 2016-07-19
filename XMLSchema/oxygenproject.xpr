@@ -6,7 +6,7 @@
     </meta>
     <projectTree name="oxygenproject.xpr">
         <file name="BarristerInputSchema.xsd"/>
-        <file name="BarristerReport.xsd"/>
+        <file name="BarristerReportSchema.xsd"/>
         <file name="ProsecutorCoreSchema.xsd"/>
     </projectTree>
 </project>
