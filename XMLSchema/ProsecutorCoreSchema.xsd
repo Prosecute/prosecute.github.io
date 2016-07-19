@@ -2,7 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     xmlns="http://prosecute.github.io/XMLSchema/Core"
-    targetNamespace="http://prosecute.github.io/XMLSchema/Core" vc:minVersion="1.1" version="0.1">
+    targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1" version="0.1"
+    xmlns:pr="http://prosecute.github.io/XMLSchema">
     <xs:complexType name="Match">
         <xs:sequence>
             <xs:element name="TrialMatches">
@@ -31,7 +32,8 @@
                                     <xs:element name="ConsoleOutput">
                                         <xs:complexType>
                                             <xs:sequence>
-                                                <xs:element name="ConsoleLine" type="ConsoleLine"/>
+                                                <xs:element name="ConsoleLine" type="pr:ConsoleLine"
+                                                />
                                             </xs:sequence>
                                         </xs:complexType>
                                     </xs:element>
@@ -73,7 +75,7 @@
                 <xs:complexType>
                     <xs:sequence maxOccurs="unbounded">
                         <xs:element maxOccurs="unbounded" minOccurs="1" name="Extension"
-                            type="Extension"/>
+                            type="pr:Extension"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -84,16 +86,16 @@
                             <xs:complexType>
                                 <xs:sequence maxOccurs="unbounded">
                                     <xs:element maxOccurs="unbounded" name="Location"
-                                        type="Location"/>
+                                        type="pr:Location"/>
                                 </xs:sequence>
                             </xs:complexType>
                         </xs:element>
                         <xs:element maxOccurs="1" minOccurs="0" name="Extensions">
                             <xs:complexType>
-                                <xs:all maxOccurs="1">
+                                <xs:sequence maxOccurs="unbounded">
                                     <xs:element maxOccurs="unbounded" minOccurs="1" name="Extension"
-                                        type="Extension"/>
-                                </xs:all>
+                                        type="pr:Extension"/>
+                                </xs:sequence>
                             </xs:complexType>
                         </xs:element>
                     </xs:choice>
@@ -104,7 +106,7 @@
                     <xs:choice maxOccurs="1" minOccurs="1">
                         <xs:element maxOccurs="1" minOccurs="0" name="Count"
                             type="xs:nonNegativeInteger"/>
-                        <xs:element maxOccurs="1" minOccurs="0" name="Percent" type="Percent"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="Percent" type="pr:Percent"/>
                     </xs:choice>
                 </xs:complexType>
             </xs:element>
@@ -188,8 +190,8 @@
             <xs:documentation>Location of file/folder with exclude/include filtering.</xs:documentation>
         </xs:annotation>
         <xs:choice maxOccurs="unbounded">
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="Exclude" type="PartURI"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="Include" type="PartURI"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Exclude" type="pr:PartURI"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Include" type="pr:PartURI"/>
         </xs:choice>
         <xs:attribute name="path" type="xs:anyURI" use="required"/>
         <xs:attribute default="false" name="direct" type="xs:boolean"/>
@@ -199,9 +201,9 @@
             <xs:documentation>URI of file/folder which will be used in testing/comparing.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="Location">
-                <xs:attribute default="testAndCompare" name="mode" type="TestMode" use="optional">
-                </xs:attribute>
+            <xs:extension base="pr:Location">
+                <xs:attribute default="testAndCompare" name="mode" type="pr:TestMode" use="optional"
+                    > </xs:attribute>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
