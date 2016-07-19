@@ -85,15 +85,14 @@
                         <xs:element maxOccurs="1" minOccurs="1" name="Locations">
                             <xs:complexType>
                                 <xs:sequence maxOccurs="unbounded">
-                                    <xs:element maxOccurs="unbounded" name="Location"
-                                        type="pr:Location"/>
+                                    <xs:element maxOccurs="1" name="Location" type="pr:Location"/>
                                 </xs:sequence>
                             </xs:complexType>
                         </xs:element>
                         <xs:element maxOccurs="1" minOccurs="0" name="Extensions">
                             <xs:complexType>
                                 <xs:sequence maxOccurs="unbounded">
-                                    <xs:element maxOccurs="unbounded" minOccurs="1" name="Extension"
+                                    <xs:element maxOccurs="1" minOccurs="1" name="Extension"
                                         type="pr:Extension"/>
                                 </xs:sequence>
                             </xs:complexType>
