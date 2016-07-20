@@ -5,8 +5,8 @@
     targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1" version="0.1"
     xmlns:pr="http://prosecute.github.io/XMLSchema">
     <xs:complexType name="Match">
-        <xs:sequence>
-            <xs:element name="TrialMatches">
+        <xs:all>
+            <xs:element name="TrialMatches" maxOccurs="1" minOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="TrialMatch">
@@ -59,9 +59,9 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-        </xs:sequence>
-        <xs:attribute name="refSubjectA"/>
-        <xs:attribute name="refSubjectB"/>
+        </xs:all>
+        <xs:attribute name="refEntityA" type="xs:anyURI"/>
+        <xs:attribute name="refEntityB" type="xs:anyURI"/>
     </xs:complexType>
     <xs:complexType name="TrialConfiguration">
         <xs:sequence>
@@ -195,7 +195,7 @@
         <xs:attribute name="path" type="xs:anyURI" use="required"/>
         <xs:attribute default="false" name="direct" type="xs:boolean"/>
     </xs:complexType>
-    <xs:complexType name="EntityLocation">
+    <xs:complexType name="EntitiesLocation">
         <xs:annotation>
             <xs:documentation>URI of file/folder which will be used in testing/comparing.</xs:documentation>
         </xs:annotation>

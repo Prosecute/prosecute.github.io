@@ -4,28 +4,30 @@
     xmlns:pr="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1">
     <xs:import namespace="http://prosecute.github.io/XMLSchema"
         schemaLocation="ProsecutorCoreSchema.xsd"/>
-    <xs:element name="TestResult">
+    <xs:element name="Report">
         <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Trials">
+            <xs:all maxOccurs="1" minOccurs="1">
+                <xs:element name="Trials" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="Trial" type="pr:TrialConfiguration"/>
+                            <xs:element name="Trial" type="pr:TrialConfiguration"
+                                maxOccurs="unbounded" minOccurs="1"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Tokens"/>
-                <xs:element name="Matches">
+                <xs:element name="Tokens" maxOccurs="1" minOccurs="0"/>
+                <xs:element name="Matches" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="Match" type="pr:Match"/>
+                            <xs:element name="Match" type="pr:Match" maxOccurs="unbounded"
+                                minOccurs="1"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Errors">
+                <xs:element name="Errors" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Error">
+                        <xs:sequence maxOccurs="1">
+                            <xs:element name="Error" maxOccurs="unbounded" minOccurs="1">
                                 <xs:complexType>
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
@@ -38,7 +40,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-            </xs:sequence>
+            </xs:all>
         </xs:complexType>
     </xs:element>
 </xs:schema>
