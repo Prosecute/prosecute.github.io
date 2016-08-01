@@ -163,10 +163,10 @@
         <xs:annotation>
             <xs:documentation>Location of file/folder with exclude/include filtering.</xs:documentation>
         </xs:annotation>
-        <xs:all maxOccurs="1">
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="Exclude" type="pr:PartURI"/>
+        <xs:sequence maxOccurs="1">
             <xs:element maxOccurs="unbounded" minOccurs="0" name="Include" type="pr:PartURI"/>
-        </xs:all>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Exclude" type="pr:PartURI"/>
+        </xs:sequence>
         <xs:attribute name="path" type="xs:anyURI" use="required"/>
         <xs:attribute default="false" name="direct" type="xs:boolean"/>
     </xs:complexType>
