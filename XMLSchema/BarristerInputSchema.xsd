@@ -39,6 +39,8 @@
                     </xs:complexType>
                 </xs:element>
             </xs:all>
+            <xs:attribute name="outputLocation" type="xs:anyURI"/>
+            <xs:attribute name="outputSourceCode" type="xs:boolean"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

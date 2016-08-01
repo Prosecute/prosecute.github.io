@@ -64,11 +64,11 @@
         <xs:attribute name="refEntityB" type="xs:anyURI"/>
     </xs:complexType>
     <xs:complexType name="TrialConfiguration">
-        <xs:sequence>
+        <xs:all>
             <xs:element name="Language">
                 <xs:complexType>
-                    <xs:attribute name="name"/>
-                    <xs:attribute name="version"/>
+                    <xs:attribute name="name" type="xs:string"/>
+                    <xs:attribute name="version" type="xs:string"/>
                 </xs:complexType>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="Extensions">
@@ -82,39 +82,15 @@
             <xs:element maxOccurs="1" minOccurs="0" name="BaseCode">
                 <xs:complexType>
                     <xs:choice maxOccurs="unbounded">
-                        <xs:element maxOccurs="1" minOccurs="1" name="Locations">
-                            <xs:complexType>
-                                <xs:sequence maxOccurs="unbounded">
-                                    <xs:element maxOccurs="1" name="Location" type="pr:Location"/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                        <xs:element maxOccurs="1" minOccurs="0" name="Extensions">
-                            <xs:complexType>
-                                <xs:sequence maxOccurs="unbounded">
-                                    <xs:element maxOccurs="1" minOccurs="1" name="Extension"
-                                        type="pr:Extension"/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element maxOccurs="1" name="Location" type="xs:anyURI"/>
                     </xs:choice>
                 </xs:complexType>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="Output">
-                <xs:complexType>
-                    <xs:choice maxOccurs="1" minOccurs="1">
-                        <xs:element maxOccurs="1" minOccurs="0" name="Count"
-                            type="xs:nonNegativeInteger"/>
-                        <xs:element maxOccurs="1" minOccurs="0" name="Percent" type="pr:Percent"/>
-                    </xs:choice>
-                </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-        <xs:attribute name="trialID"/>
-        <xs:attribute name="trialType"/>
+        </xs:all>
+        <xs:attribute name="trialID" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="trialName" type="xs:normalizedString"/>
         <xs:attribute default="1" name="sensitivity" type="xs:float"/>
         <xs:attribute default="20" name="minMatch" type="xs:positiveInteger"/>
-        <xs:attribute default="false" name="outputSourceCode" type="xs:boolean" use="optional"/>
     </xs:complexType>
     <xs:complexType name="ConsoleLine">
         <xs:simpleContent>
