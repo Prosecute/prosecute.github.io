@@ -7,26 +7,26 @@
     <xs:element name="Configuration">
         <xs:complexType>
             <xs:all maxOccurs="1" minOccurs="0">
-                <xs:element name="EntitiesLocations" maxOccurs="1" minOccurs="1">
+                <xs:element name="EntitiesLocations" maxOccurs="1" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence maxOccurs="1">
-                            <xs:element name="EntitiesLocation" maxOccurs="unbounded" minOccurs="1"
+                            <xs:element name="EntitiesLocation" maxOccurs="unbounded" minOccurs="0"
                                 type="pr:EntitiesLocation"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Trials" maxOccurs="1" minOccurs="1">
+                <xs:element name="Trials" maxOccurs="1" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence maxOccurs="1">
                             <xs:element name="Trial" type="pr:TrialConfiguration"
-                                maxOccurs="unbounded" minOccurs="1"/>
+                                maxOccurs="unbounded" minOccurs="0"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
                 <xs:element minOccurs="0" name="Options">
                     <xs:complexType>
                         <xs:sequence maxOccurs="1" minOccurs="1">
-                            <xs:element maxOccurs="unbounded" name="Option" minOccurs="1">
+                            <xs:element maxOccurs="unbounded" name="Option" minOccurs="0">
                                 <xs:complexType>
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
