@@ -6,10 +6,10 @@
     xmlns:pr="http://prosecute.github.io/XMLSchema">
     <xs:complexType name="Match">
         <xs:all>
-            <xs:element name="TrialMatches" maxOccurs="1" minOccurs="1">
+            <xs:element name="TrialMatches" maxOccurs="1" minOccurs="0">
                 <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="TrialMatch">
+                    <xs:all maxOccurs="1" minOccurs="1">
+                        <xs:element name="TrialMatch" maxOccurs="unbounded" minOccurs="1">
                             <xs:complexType>
                                 <xs:sequence>
                                     <xs:element name="TokenMatches">
@@ -51,16 +51,16 @@
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>
-                                <xs:attribute name="trialID" type="xs:nonNegativeInteger"/>
+                                <xs:attribute name="trialID" type="xs:int"/>
                             </xs:complexType>
                         </xs:element>
-                    </xs:sequence>
+                    </xs:all>
                 </xs:complexType>
             </xs:element>
         </xs:all>
         <xs:attribute name="refSubmissionA" type="xs:anyURI"/>
-        <xs:attribute name="refEntitiesLocationAID" type="xs:nonNegativeInteger"/>
-        <xs:attribute name="refEntitiesLocationBID" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="refEntitiesLocationAID" type="xs:int"/>
+        <xs:attribute name="refEntitiesLocationBID" type="xs:int"/>
         <xs:attribute name="refSubmissionB" type="xs:anyURI"/>
     </xs:complexType>
     <xs:complexType name="TrialConfiguration">
@@ -87,7 +87,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:all>
-        <xs:attribute name="trialID" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="trialID" type="xs:int"/>
         <xs:attribute name="trialName" type="xs:normalizedString"/>
         <xs:attribute default="1" name="sensitivity" type="xs:float"/>
         <xs:attribute default="20" name="minMatch" type="xs:positiveInteger"/>
@@ -106,7 +106,7 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:attribute>
-                <xs:attribute name="time" type="xs:integer"/>
+                <xs:attribute name="time" type="xs:long"/>
                 <xs:attribute name="source" type="xs:normalizedString"/>
             </xs:extension>
         </xs:simpleContent>
@@ -115,15 +115,15 @@
         <xs:sequence>
             <xs:element name="Description" type="xs:string"/>
         </xs:sequence>
-        <xs:attribute name="tokenID"/>
-        <xs:attribute name="name"/>
+        <xs:attribute name="tokenID" type="xs:int"/>
+        <xs:attribute name="name" type="xs:string"/>
     </xs:complexType>
     <xs:complexType name="TokenPosition">
-        <xs:attribute name="refToken"/>
-        <xs:attribute name="file"/>
-        <xs:attribute name="line"/>
-        <xs:attribute name="position"/>
-        <xs:attribute name="length"/>
+        <xs:attribute name="refTokenID" type="xs:int"/>
+        <xs:attribute name="file" type="xs:anyURI"/>
+        <xs:attribute name="line" type="xs:int"/>
+        <xs:attribute name="position" type="xs:int"/>
+        <xs:attribute name="length" type="xs:int"/>
     </xs:complexType>
     <xs:simpleType name="Percent">
         <xs:annotation>
