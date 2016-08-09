@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:pr="http://prosecute.github.io/XMLSchema"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/D:/Dokumenty/Projekt/Gitlab/prosecute.github.io/XMLSchema/BarristerInputSchema.xsd" outputLocation="output.xml" outputSourceCode="false">
+ <EntitiesLocations>
+  <EntitiesLocation path="input/"></EntitiesLocation>
+ </EntitiesLocations>
+ <Trials>
+  <Trial trialName="FirstTrial" sensitivity="1" minMatch="20">
+   <pr:Language name="java" version="1.8"></pr:Language>
+   
+  </Trial>
+ </Trials>
+</Configuration>

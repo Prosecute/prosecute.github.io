@@ -43,9 +43,7 @@
                                                 <xs:element name="Error">
                                                   <xs:complexType>
                                                   <xs:simpleContent>
-                                                  <xs:extension base="xs:string">
-                                                  <xs:attribute name="level"/>
-                                                  </xs:extension>
+                                                  <xs:extension base="xs:string"> </xs:extension>
                                                   </xs:simpleContent>
                                                   </xs:complexType>
                                                 </xs:element>
@@ -53,15 +51,17 @@
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>
-                                <xs:attribute name="refTrial"/>
+                                <xs:attribute name="trialID" type="xs:nonNegativeInteger"/>
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
         </xs:all>
-        <xs:attribute name="refEntityA" type="xs:anyURI"/>
-        <xs:attribute name="refEntityB" type="xs:anyURI"/>
+        <xs:attribute name="refSubmissionA" type="xs:anyURI"/>
+        <xs:attribute name="refEntitiesLocationAID" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="refEntitiesLocationBID" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="refSubmissionB" type="xs:anyURI"/>
     </xs:complexType>
     <xs:complexType name="TrialConfiguration">
         <xs:all>
@@ -176,9 +176,10 @@
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="pr:Location">
-                <xs:attribute default="test" name="mode" type="pr:TestMode" use="optional">
-                </xs:attribute>
+                <xs:attribute default="test" name="mode" type="pr:TestMode" use="optional"> </xs:attribute>
+                <xs:attribute name="entitiesLocationID" type="xs:nonNegativeInteger"/>
             </xs:extension>
+
         </xs:complexContent>
     </xs:complexType>
 </xs:schema>
