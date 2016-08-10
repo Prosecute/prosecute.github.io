@@ -3,7 +3,7 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1"
     xmlns="http://prosecute.github.io/XMLSchema">
-    <xs:include schemaLocation="http://prosecute.github.io/XMLSchema/ProsecutorCoreSchema.xsd"/>
+    <xs:include schemaLocation="https://prosecute.github.io/XMLSchema/ProsecutorCoreSchema.xsd"/>
     <xs:element name="Configuration">
         <xs:complexType>
             <xs:all maxOccurs="1" minOccurs="0">
