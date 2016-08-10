@@ -18,13 +18,20 @@
                                                 <xs:element name="RangeMatch" maxOccurs="unbounded"
                                                   minOccurs="0">
                                                   <xs:complexType>
-                                                  <xs:attribute name="startLineA"
-                                                  type="xs:nonNegativeInteger"/>
-                                                  <xs:attribute name="startLineB"
-                                                  type="xs:nonNegativeInteger"/>
-                                                  <xs:attribute name="startCharA"
-                                                  type="xs:nonNegativeInteger"/>
-                                                  <xs:attribute name="startCharB"/>
+                                                  <xs:attribute name="startLineA" type="xs:int"/>
+                                                  <xs:attribute name="startLineB" type="xs:int"/>
+                                                  <xs:attribute name="startCharA" type="xs:int"/>
+                                                  <xs:attribute name="startCharB" type="xs:int"/>
+                                                  <xs:attribute name="endLineA" type="xs:int"/>
+                                                  <xs:attribute name="endLineB" type="xs:int"/>
+                                                  <xs:attribute name="endCharA" type="xs:int"/>
+                                                  <xs:attribute name="endCharB" type="xs:int"/>
+                                                  <xs:attribute name="tokenStartA" type="xs:int"
+                                                  use="required"/>
+                                                  <xs:attribute name="tokenStartB" type="xs:int"
+                                                  use="required"/>
+                                                  <xs:attribute name="tokenLength" type="xs:int"
+                                                  use="required"/>
                                                   </xs:complexType>
                                                 </xs:element>
                                             </xs:sequence>
