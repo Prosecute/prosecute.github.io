@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    xmlns:pr="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1">
-    <xs:import namespace="" schemaLocation="ProsecutorCoreSchema.xsd"/>
+    targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1"
+    xmlns:pr="http://prosecute.github.io/XMLSchema">
+    <xs:include schemaLocation="ProsecutorCoreSchema.xsd"/>
     <xs:element name="Report">
         <xs:complexType>
             <xs:all maxOccurs="1" minOccurs="1">
