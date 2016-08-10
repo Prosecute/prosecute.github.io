@@ -2,15 +2,15 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1"
-    xmlns:pr="http://prosecute.github.io/XMLSchema">
-    <xs:include schemaLocation="ProsecutorCoreSchema.xsd"/>
+    xmlns="http://prosecute.github.io/XMLSchema">
+    <xs:include schemaLocation="http://prosecute.github.io/XMLSchema/ProsecutorCoreSchema.xsd"/>
     <xs:element name="Report">
         <xs:complexType>
             <xs:all maxOccurs="1" minOccurs="1">
                 <xs:element name="Trials" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                            <xs:element name="Trial" type="pr:TrialConfiguration"
+                            <xs:element name="Trial" type="TrialConfiguration"
                                 maxOccurs="unbounded" minOccurs="0"/>
                         </xs:sequence>
                     </xs:complexType>
@@ -19,7 +19,7 @@
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded" minOccurs="0">
                             <xs:element maxOccurs="unbounded" minOccurs="0" name="EntitiesLocation"
-                                type="pr:EntitiesLocation"> </xs:element>
+                                type="EntitiesLocation"> </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                     <xs:unique name="uniqueEntitiesLocationID">
@@ -31,7 +31,7 @@
                 <xs:element name="Matches" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                            <xs:element name="Match" type="pr:Match" maxOccurs="unbounded"
+                            <xs:element name="Match" type="Match" maxOccurs="unbounded"
                                 minOccurs="0"/>
                         </xs:sequence>
                     </xs:complexType>
@@ -40,7 +40,7 @@
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded" minOccurs="0">
                             <xs:element maxOccurs="unbounded" minOccurs="0" name="ConsoleLine"
-                                type="pr:ConsoleLine"/>
+                                type="ConsoleLine"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
