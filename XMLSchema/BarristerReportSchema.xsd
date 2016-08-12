@@ -10,8 +10,8 @@
                 <xs:element name="Trials" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                            <xs:element name="Trial" type="TrialConfiguration"
-                                maxOccurs="unbounded" minOccurs="0"/>
+                            <xs:element name="Trial" type="TrialConfiguration" maxOccurs="unbounded"
+                                minOccurs="0"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -61,6 +61,10 @@
                     </xs:complexType>
                 </xs:element>
             </xs:all>
+            <xs:attribute name="tool" type="xs:string"/>
+            <xs:attribute name="version" type="xs:normalizedString"/>
+            <xs:attribute name="generated" type="xs:dateTime"/>
+            <xs:attribute name="generateTime" type="xs:time"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

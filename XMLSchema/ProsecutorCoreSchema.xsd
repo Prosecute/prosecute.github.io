@@ -67,10 +67,13 @@
                 </xs:complexType>
             </xs:element>
         </xs:all>
-        <xs:attribute name="refSubmissionA" type="xs:anyURI"/>
+        <xs:attribute name="refNameA" type="xs:normalizedString"/>
+        <xs:attribute name="refNameB" type="xs:normalizedString"/>
         <xs:attribute name="refEntitiesLocationAID" type="xs:int"/>
+        <xs:attribute name="refSubmissionA" type="xs:anyURI"/>
         <xs:attribute name="refEntitiesLocationBID" type="xs:int"/>
         <xs:attribute name="refSubmissionB" type="xs:anyURI"/>
+        <xs:attribute name="match" type="pr:Percent"/>
     </xs:complexType>
     <xs:complexType name="TrialConfiguration">
         <xs:all>
@@ -115,7 +118,7 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:attribute>
-                <xs:attribute name="time" type="xs:long"/>
+                <xs:attribute name="time" type="xs:time"/>
                 <xs:attribute name="source" type="xs:normalizedString"/>
             </xs:extension>
         </xs:simpleContent>
