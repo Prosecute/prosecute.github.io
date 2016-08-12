@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>  
+<?xml-stylesheet type="text/xsl" href="BarristerReport.xsl"?>
+<Report xmlns="http://prosecute.github.io/XMLSchema" tool="Barrister" version="0.1alpha" generated="2016-08-12T10:05:13" generateTime="0:0:8">
+  <Trials>
+    <Trial trialID="0" trialName="FirstTrial" sensitivity="1.0" minMatch="20">
+      <Language name="java" version="1.8"/>
+      <Extensions>
+        <Extension>java</Extension>  
+        <Extension>jav</Extension>
+      </Extensions> 
+    </Trial>
+  </Trials>
+  <Matches>
+    <Match match="100.0" refSubmissionA="src\test\resources\language\java\submissionsRepository\submission1" refNameA="submission1" refNameB="submission0" refEntitiesLocationAID="0" refEntitiesLocationBID="0" refSubmissionB="src\test\resources\language\java\submissionsRepository\submission0">
+      <TrialMatches>
+        <TrialMatch trialID="0">
+          <TokenMatches>
+            <RangeMatch tokenStartA="0" tokenStartB="0" tokenLength="53"/>
+          </TokenMatches>
+          <ConsoleOutput/>
+        </TrialMatch>
+      </TrialMatches>
+    </Match>
+    <Match match="100.0" refSubmissionA="src\test\resources\language\java\submissionsRepository\submission0" refNameA="submission0" refNameB="submission1" refEntitiesLocationAID="0" refEntitiesLocationBID="0" refSubmissionB="src\test\resources\language\java\submissionsRepository\submission1">
+      <TrialMatches>
+        <TrialMatch trialID="0">
+          <TokenMatches>
+            <RangeMatch tokenStartA="0" tokenStartB="0" tokenLength="53"/>
+          </TokenMatches>
+          <ConsoleOutput/>
+        </TrialMatch>
+      </TrialMatches>
+    </Match>
+  </Matches>
+  <Errors/>
+</Report>
