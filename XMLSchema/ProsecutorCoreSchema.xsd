@@ -77,10 +77,12 @@
     </xs:complexType>
     <xs:complexType name="TrialConfiguration">
         <xs:all>
-            <xs:element name="Language">
+            <xs:element name="TrialType">
                 <xs:complexType>
+                    <xs:attribute name="category" type="pr:TrialCategory"/>
                     <xs:attribute name="name" type="xs:string"/>
                     <xs:attribute name="version" type="xs:string"/>
+                    <xs:attribute name="mode" type="xs:string"/>
                 </xs:complexType>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="Extensions">
@@ -171,6 +173,16 @@
             <xs:enumeration value="compare"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="TrialCategory">
+        <xs:annotation>
+            <xs:documentation>Category of trial.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="sourceCode"/>
+            <xs:enumeration value="text"/>
+            <xs:enumeration value="image"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="Location">
         <xs:annotation>
             <xs:documentation>Location of file/folder with exclude/include filtering.</xs:documentation>
@@ -190,6 +202,7 @@
             <xs:extension base="pr:Location">
                 <xs:attribute default="test" name="mode" type="pr:TestMode" use="optional"> </xs:attribute>
                 <xs:attribute name="entitiesLocationID" type="xs:nonNegativeInteger"/>
+                <xs:attribute name="name" type="xs:string"/>
             </xs:extension>
 
         </xs:complexContent>
