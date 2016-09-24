@@ -4,48 +4,47 @@
     targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1"
     xmlns="http://prosecute.github.io/XMLSchema">
     <xs:include schemaLocation="https://prosecute.github.io/XMLSchema/ProsecutorCoreSchema.xsd"/>
-    <xs:element name="Configuration">
-        <xs:complexType>
-            <xs:all maxOccurs="1" minOccurs="0">
-                <xs:element name="EntitiesLocations" maxOccurs="1" minOccurs="0">
-                    <xs:complexType>
-                        <xs:sequence maxOccurs="1">
-                            <xs:element name="EntitiesLocation" maxOccurs="unbounded" minOccurs="0"
-                                type="EntitiesLocation"> </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                    <xs:unique name="uniqueEntitiesLocationID">
-                        <xs:selector xpath="EntitiesLocation"/>
-                        <xs:field xpath="@entitiesLocationID"/>
-                    </xs:unique>
-                </xs:element>
-                <xs:element name="Trials" maxOccurs="1" minOccurs="0">
-                    <xs:complexType>
-                        <xs:sequence maxOccurs="1">
-                            <xs:element name="Trial" type="TrialConfiguration" maxOccurs="unbounded"
-                                minOccurs="0"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element minOccurs="0" name="Options">
-                    <xs:complexType>
-                        <xs:sequence maxOccurs="1" minOccurs="1">
-                            <xs:element maxOccurs="unbounded" name="Option" minOccurs="0">
-                                <xs:complexType>
-                                    <xs:simpleContent>
-                                        <xs:extension base="xs:string">
-                                            <xs:attribute name="name" type="xs:normalizedString"/>
-                                        </xs:extension>
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-            </xs:all>
-            <xs:attribute name="outputLocation" type="xs:anyURI"/>
-            <xs:attribute name="outputSourceCode" type="xs:boolean"/>
-            <xs:attribute name="projectName" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
+    <xs:element name="Configuration" type="ConfigurationType"> </xs:element>
+    <xs:complexType name="ConfigurationType">
+        <xs:all maxOccurs="1" minOccurs="0">
+            <xs:element name="EntitiesLocations" maxOccurs="1" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="1">
+                        <xs:element name="EntitiesLocation" maxOccurs="unbounded" minOccurs="0"
+                            type="EntitiesLocation"> </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+                <xs:unique name="uniqueEntitiesLocationID">
+                    <xs:selector xpath="EntitiesLocation"/>
+                    <xs:field xpath="@entitiesLocationID"/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="Trials" maxOccurs="1" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="1">
+                        <xs:element name="Trial" type="TrialConfiguration" maxOccurs="unbounded"
+                            minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="Options">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="1" minOccurs="1">
+                        <xs:element maxOccurs="unbounded" name="Option" minOccurs="0">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                        <xs:attribute name="name" type="xs:normalizedString"/>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="outputLocation" type="xs:anyURI"/>
+        <xs:attribute name="outputSourceCode" type="xs:boolean"/>
+        <xs:attribute name="projectName" type="xs:string"/>
+    </xs:complexType>
 </xs:schema>

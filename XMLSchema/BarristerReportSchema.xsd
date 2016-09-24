@@ -4,30 +4,12 @@
     targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1"
     xmlns="http://prosecute.github.io/XMLSchema">
     <xs:include schemaLocation="https://prosecute.github.io/XMLSchema/ProsecutorCoreSchema.xsd"/>
+    <xs:include schemaLocation="https://prosecute.github.io/XMLSchema/BarristerInputSchema.xsd"/>
     <xs:element name="Report">
         <xs:complexType>
             <xs:all maxOccurs="1" minOccurs="1">
-                <xs:element name="Trials" maxOccurs="1" minOccurs="1">
-                    <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                            <xs:element name="Trial" type="TrialConfiguration" maxOccurs="unbounded"
-                                minOccurs="0"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="EntitiesLocations">
-                    <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                            <xs:element maxOccurs="unbounded" minOccurs="0" name="EntitiesLocation"
-                                type="EntitiesLocation"> </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                    <xs:unique name="uniqueEntitiesLocationID">
-                        <xs:selector xpath="EntitiesLocation"/>
-                        <xs:field xpath="@entitiesLocationID"/>
-                    </xs:unique>
-                </xs:element>
                 <xs:element name="Tokens" maxOccurs="1" minOccurs="0"/>
+                <xs:element name="Configuration"/>
                 <xs:element name="Matches" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded" minOccurs="0">
