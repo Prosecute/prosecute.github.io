@@ -9,7 +9,7 @@
         <xs:complexType>
             <xs:all maxOccurs="1" minOccurs="1">
                 <xs:element name="Tokens" maxOccurs="1" minOccurs="0"/>
-                <xs:element name="Configuration"/>
+                <xs:element name="Configuration" type="ConfigurationType"/>
                 <xs:element name="Matches" maxOccurs="1" minOccurs="1">
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded" minOccurs="0">
