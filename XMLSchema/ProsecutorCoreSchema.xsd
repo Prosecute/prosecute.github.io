@@ -85,6 +85,13 @@
                     <xs:attribute name="mode" type="xs:string"/>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="FileFilters">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="FileFilter" type="pr:FileFilter"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="Extensions">
                 <xs:complexType>
                     <xs:sequence maxOccurs="unbounded">
@@ -207,4 +214,60 @@
 
         </xs:complexContent>
     </xs:complexType>
+    <xs:complexType name="FileFilter">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="FileModifiedDate" type="pr:FilteredParameter" maxOccurs="1"
+                minOccurs="0"/>
+            <xs:element name="FileCreateDate" type="pr:FilteredParameter" maxOccurs="1"
+                minOccurs="0"/>
+            <xs:element name="FileSize" type="pr:FilteredParameter" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="FileExtension" type="pr:FilteredList" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Regex" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Path" type="pr:FilteredList" maxOccurs="1" minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute name="name" type="xs:string" use="optional"/>
+        <xs:attribute name="mode" type="pr:RestrictionMode" use="required"> </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="FolderFilter">
+        <xs:sequence>
+            <xs:element name="Regex" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="mode" type="pr:RestrictionMode" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="FilteredParameter">
+        <xs:attribute name="operation" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="=="/>
+                    <xs:enumeration value="!="/>
+                    <xs:enumeration value="&lt;"/>
+                    <xs:enumeration value=">"/>
+                    <xs:enumeration value="&lt;="/>
+                    <xs:enumeration value=">="/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="FilteredList">
+        <xs:sequence>
+            <xs:element name="Element" type="pr:FilteredParameter" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="operation" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="all"/>
+                    <xs:enumeration value="any"/>
+                    <xs:enumeration value="none"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:simpleType name="RestrictionMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="include"/>
+            <xs:enumeration value="exclude"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
