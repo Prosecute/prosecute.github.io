@@ -211,7 +211,7 @@
         </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="FileFilter">
-        <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:all maxOccurs="1" minOccurs="0">
             <xs:element name="FileModifiedDate" type="pr:FilteredParameter" maxOccurs="1"
                 minOccurs="0"/>
             <xs:element name="FileCreateDate" type="pr:FilteredParameter" maxOccurs="1"
@@ -220,7 +220,7 @@
             <xs:element name="FileExtension" type="pr:FilteredList" maxOccurs="1" minOccurs="0"/>
             <xs:element name="Regex" type="xs:string" maxOccurs="1" minOccurs="0"/>
             <xs:element name="Path" type="pr:FilteredList" maxOccurs="1" minOccurs="0"/>
-        </xs:choice>
+        </xs:all>
         <xs:attribute name="name" type="xs:string" use="optional"/>
         <xs:attribute name="mode" type="pr:RestrictionMode" use="required"> </xs:attribute>
     </xs:complexType>
@@ -241,6 +241,10 @@
                     <xs:enumeration value=">"/>
                     <xs:enumeration value="&lt;="/>
                     <xs:enumeration value=">="/>
+                    <xs:enumeration value="startWith"/>
+                    <xs:enumeration value="endWith"/>
+                    <xs:enumeration value="contains"/>
+                    <xs:enumeration value="notContains"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
