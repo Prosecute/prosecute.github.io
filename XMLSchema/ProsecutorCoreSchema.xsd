@@ -92,14 +92,6 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="Extensions">
-                <xs:complexType>
-                    <xs:sequence maxOccurs="unbounded">
-                        <xs:element maxOccurs="unbounded" minOccurs="1" name="Extension"
-                            type="pr:Extension"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="BaseCode">
                 <xs:complexType>
                     <xs:choice maxOccurs="unbounded">
@@ -195,8 +187,8 @@
             <xs:documentation>Location of file/folder with exclude/include filtering.</xs:documentation>
         </xs:annotation>
         <xs:sequence maxOccurs="1">
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="Include" type="pr:PartURI"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="Exclude" type="pr:PartURI"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="FolderFilter"
+                type="pr:FolderFilter"/>
         </xs:sequence>
         <xs:attribute name="path" type="xs:anyURI" use="required"/>
         <xs:attribute default="false" name="direct" type="xs:boolean"/>
@@ -207,6 +199,10 @@
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="pr:Location">
+                <xs:sequence maxOccurs="1" minOccurs="1">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="EntityContentFilter"
+                        type="pr:FileFilter"/>
+                </xs:sequence>
                 <xs:attribute default="test" name="mode" type="pr:TestMode" use="optional"> </xs:attribute>
                 <xs:attribute name="entitiesLocationID" type="xs:nonNegativeInteger"/>
                 <xs:attribute name="name" type="xs:string"/>
