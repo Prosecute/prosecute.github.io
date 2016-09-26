@@ -7,9 +7,17 @@
     <xs:complexType name="Match">
         <xs:all minOccurs="0">
             <xs:element name="TrialMatches" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains only trial matches that has found match.
+                    </xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence maxOccurs="unbounded" minOccurs="0">
                         <xs:element name="TrialMatch" maxOccurs="unbounded" minOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation></xs:documentation>
+                            </xs:annotation>
                             <xs:complexType>
                                 <xs:all minOccurs="1">
                                     <xs:element name="TokenMatches" minOccurs="1">
@@ -60,7 +68,11 @@
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:all>
-                                <xs:attribute name="trialID" type="xs:int"/>
+                                <xs:attribute name="trialID" type="xs:int">
+                                    <xs:annotation>
+                                        <xs:documentation>Refers to trial in Configuration.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
@@ -101,10 +113,32 @@
                 </xs:complexType>
             </xs:element>
         </xs:all>
-        <xs:attribute name="trialID" type="xs:int"/>
-        <xs:attribute name="trialName" type="xs:normalizedString"/>
-        <xs:attribute default="1" name="sensitivity" type="xs:float"/>
-        <xs:attribute default="20" name="minMatch" type="xs:positiveInteger"/>
+        <xs:attribute name="trialID" type="xs:int">
+            <xs:annotation>
+                <xs:documentation>
+                    ID of Trial.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="trialName" type="xs:normalizedString">
+            <xs:annotation>
+                <xs:documentation>Only used in GUI.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="1" name="sensitivity" type="xs:float">
+            <xs:annotation>
+                <xs:documentation>
+                    Sensitivity of test. Value should be between 0.0 and 1.0. For exact usage look on specified trial mode.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="20" name="minMatch" type="xs:positiveInteger">
+            <xs:annotation>
+                <xs:documentation>
+                    For exact usage look on specified trial mode.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="ConsoleLine">
         <xs:simpleContent>
