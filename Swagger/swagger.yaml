@@ -1,16 +1,16 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  version: '0.1'
-  title: 'Prosecutor API'
+  version: "0.1"
+  title: "Prosecutor API"
   contact:
-    name: 'Jiri Fryc'
-    url: 'https://prosecute.github.io/'
-    email: 'jirifryc.cz@jirifryc.cz'
+    name: "Jiri Fryc"
+    url: "https://prosecute.github.io/"
+    email: "jirifryc.cz@jirifryc.cz"
   license:
     name: AGPL v3
-    url: 'https://www.gnu.org/licenses/agpl-3.0.en.html'
-host: 'prosecutor.fel.cvut.cz'
-basePath: '/'
+    url: "https://www.gnu.org/licenses/agpl-3.0.en.html"
+host: "prosecutor.fel.cvut.cz"
+basePath: "/"
 schemes:
   - https
 consumes:
@@ -21,66 +21,66 @@ produces:
   - application/xml
 securityDefinitions:
   ServiceAuth:
-     type: 'oauth2'
-     flow: 'application'
-     tokenUrl: '/service/token'
+     type: "oauth2"
+     flow: "application"
+     tokenUrl: "/service/token"
      scopes:
-       auth: 'Service is granted to access application.'
-       write:solution: 'Can create/update solutions.'
-       read:solution: 'Can access own solutions.'
-       read:all:solution: 'Can access solution of all connected services.'
-       write:all:solution: 'Can create/update solution of all connected services.'
-       read:group: 'Can access own groups.'
-       write:group: 'Can create/update own groups.'
-       write:task: 'Can create/update own tasks.'
-       read:task: 'Can access own tasks. (Only definitions of tasks, for accessing outputs of task is read:report scope needed.)'
-       run:tasks: 'Can initiate start of own tasks.'
-       force:run:tasks: 'Has ability to force start task immediately.'
-       read:report: 'Can access own reports of tasks.'
+       auth: "Service is granted to access application."
+       write:solution: "Can create/update solutions."
+       read:solution: "Can access own solutions."
+       read:all:solution: "Can access solution of all connected services."
+       write:all:solution: "Can create/update solution of all connected services."
+       read:group: "Can access own groups."
+       write:group: "Can create/update own groups."
+       write:task: "Can create/update own tasks."
+       read:task: "Can access own tasks. (Only definitions of tasks, for accessing outputs of task is read:report scope needed.)"
+       run:tasks: "Can initiate start of own tasks."
+       force:run:tasks: "Has ability to force start task immediately."
+       read:report: "Can access own reports of tasks."
 
 security:
   - ServiceAuth:
-    - 'auth'
+    - "auth"
 tags:
   - name: Service
     description: Service operations.
   - name: Solution
     description: Solution operations.
   - name: Group
-    description: 'Group operations.'
+    description: "Group operations."
   - name: Task
-    description: 'Task operations.'
+    description: "Task operations."
   - name: Suite
-    description: 'Suite operations.'
+    description: "Suite operations."
   - name: Task Report
-    description: 'Task report operations.'
+    description: "Task report operations."
   - name: File managment
-    description: 'File managment.'
+    description: "File managment."
 paths:
   /service/token:
     post:
-      summary: 'Authenticates service and send him generated token.'
+      summary: "Authenticates service and send him generated token."
       operationId: tokenService
       security: []
       tags:
         - Service
       responses:
-        '200':
-          description: 'Return token for authentication.'
+        "200":
+          description: "Return token for authentication."
           schema:
-            $ref: '#/definitions/OAuth'
-        '401':
+            $ref: "#/definitions/OAuth"
+        "401":
           description: Authentication failed.
           schema:
-            $ref: 'resErrors.yaml#/definitions/AuthenticationFailed'
+            $ref: "resErrors.yaml#/definitions/AuthenticationFailed"
   /solution/create:
     post:
-      summary: 'Create new solution and return its configuration.'
+      summary: "Create new solution and return its configuration."
       operationId: createSolution
       security:
         - ServiceAuth:
-          - 'auth'
-          - 'write:solution'
+          - "auth"
+          - "write:solution"
       tags:
         - Solution
 
@@ -89,80 +89,80 @@ paths:
           name: name
           required: false
           maxLength: 256
-          description: 'Desired name for solution. (optional)'
-          $ref: 'defSolution.yaml#/definitions/ObjectName'
+          description: "Desired name for solution. (optional)"
+          $ref: "defSolution.yaml#/definitions/ObjectName"
       responses:
-        '200':
-          description: 'Successful operation.'
+        "200":
+          description: "Successful operation."
           schema:
-            $ref: 'defSolution.yaml#/definitions/Solution'
-        '401':
-          description: 'Token expired or wasn´t send with request.'
+            $ref: "defSolution.yaml#/definitions/Solution"
+        "401":
+          description: "Token expired or wasn´t send with request."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthenticated'
-        '403':
-          description: 'Service does not have required permissions.'
+            $ref: "resErrors.yaml#/definitions/Unauthenticated"
+        "403":
+          description: "Service does not have required permissions."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthorized'
+            $ref: "resErrors.yaml#/definitions/Unauthorized"
   /solution/list:
     get:
-      summary: 'List all solutions belonging to a service.'
+      summary: "List all solutions belonging to a service."
       operationId: listSolutions
       tags:
         - Solution
       responses:
-        '401':
-          description: 'Token expired or wasn´t send with request.'
+        "401":
+          description: "Token expired or wasn´t send with request."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthenticated'
-        '403':
-          description: 'Service does not have required permissions.'
+            $ref: "resErrors.yaml#/definitions/Unauthenticated"
+        "403":
+          description: "Service does not have required permissions."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthorized'
-        '200':
-          description: 'Successful operation.'
+            $ref: "resErrors.yaml#/definitions/Unauthorized"
+        "200":
+          description: "Successful operation."
           schema:
             type: array
             items:
-              $ref: 'defSolution.yaml#/definitions/Solution'
+              $ref: "defSolution.yaml#/definitions/Solution"
             xml:
               wrapped: true
               name: solutions
           examples:
               - solution:
-                  name: 'A07B01JAVA - Plagiarism check for programming homeworks.'
+                  name: "A07B01JAVA - Plagiarism check for programming homeworks."
                   id: 52
               - solution:
-                  name: 'A07B14CPP - Plagiarism check for programming homeworks.'
+                  name: "A07B14CPP - Plagiarism check for programming homeworks."
                   id: 53
   /solution/{solution_id}:
     parameters:
       - name: solution_id
         type: integer
         in: path
-        description: 'ID of solution.'
-        format: 'int32'
+        description: "ID of solution."
+        format: "int32"
         minimum: 0
     get:
-      summary: 'Find solution by ID.'
+      summary: "Find solution by ID."
       operationId: getSolution
       tags:
         - Solution
       responses:
-        '401':
-          description: 'Token expired or wasn´t send with request.'
+        "401":
+          description: "Token expired or wasn´t send with request."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthenticated'
-        '403':
-          description: 'Service does not have required permissions.'
+            $ref: "resErrors.yaml#/definitions/Unauthenticated"
+        "403":
+          description: "Service does not have required permissions."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthorized'
-        '200':
-          description: 'Successful operation.'
+            $ref: "resErrors.yaml#/definitions/Unauthorized"
+        "200":
+          description: "Successful operation."
           schema:
-              $ref: 'defSolution.yaml#/definitions/Solution'
+              $ref: "defSolution.yaml#/definitions/Solution"
     put:
-      summary: 'Update solution by ID.'
+      summary: "Update solution by ID."
       operationId: updateSolution
       tags:
         - Solution
@@ -171,44 +171,44 @@ paths:
           in: body
           description: Solution object
           schema:
-              $ref: 'defSolution.yaml#/definitions/Solution'
+              $ref: "defSolution.yaml#/definitions/Solution"
       responses:
-        '401':
-          description: 'Token expired or wasn´t send with request.'
+        "401":
+          description: "Token expired or wasn´t send with request."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthenticated'
-        '403':
-          description: 'Service does not have required permissions.'
+            $ref: "resErrors.yaml#/definitions/Unauthenticated"
+        "403":
+          description: "Service does not have required permissions."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthorized'
-        '200':
-          description: 'Successful operation.'
+            $ref: "resErrors.yaml#/definitions/Unauthorized"
+        "200":
+          description: "Successful operation."
     delete:
-      summary: 'Delete solution by ID.'
+      summary: "Delete solution by ID."
       operationId: deleteSolution
       tags:
         - Solution
       responses:
-        '401':
-          description: 'Token expired or wasn´t send with request.'
+        "401":
+          description: "Token expired or wasn´t send with request."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthenticated'
-        '403':
-          description: 'Service does not have required permissions.'
+            $ref: "resErrors.yaml#/definitions/Unauthenticated"
+        "403":
+          description: "Service does not have required permissions."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthorized'
-        '200':
-          description: 'Successful operation.'
+            $ref: "resErrors.yaml#/definitions/Unauthorized"
+        "200":
+          description: "Successful operation."
   /solution/{solution_id}/group/create:
     parameters:
       - name: solution_id
         type: integer
         in: path
-        description: 'ID of solution.'
-        format: 'int32'
+        description: "ID of solution."
+        format: "int32"
         minimum: 0
     post:
-      summary: 'Create new group in solution.'
+      summary: "Create new group in solution."
       operationId: createGroup
       tags:
         - Group
@@ -216,46 +216,46 @@ paths:
         - in: body
           name: Group
           schema:
-            $ref: 'defSolution.yaml#/definitions/Group'
+            $ref: "defSolution.yaml#/definitions/Group"
       responses:
-        '200':
-          description: 'Successful operation.'
+        "200":
+          description: "Successful operation."
   /solution/{solution_id}/group/list:
     parameters:
       - name: solution_id
         type: integer
         in: path
-        description: 'ID of solution.'
-        format: 'int32'
+        description: "ID of solution."
+        format: "int32"
         minimum: 0
     get:
-      summary: 'List all groups in solution.'
+      summary: "List all groups in solution."
       operationId: listGroups
       tags:
         - Group
       responses:
-        '401':
-          description: 'Token expired or wasn´t send with request.'
+        "401":
+          description: "Token expired or wasn´t send with request."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthenticated'
-        '403':
-          description: 'Service does not have required permissions.'
+            $ref: "resErrors.yaml#/definitions/Unauthenticated"
+        "403":
+          description: "Service does not have required permissions."
           schema:
-            $ref: 'resErrors.yaml#/definitions/Unauthorized'
-        '200':
-          description: 'Successful operation.'
+            $ref: "resErrors.yaml#/definitions/Unauthorized"
+        "200":
+          description: "Successful operation."
           schema:
             type: array
             items:
-              $ref: 'defSolution.yaml#/definitions/Group'
+              $ref: "defSolution.yaml#/definitions/Group"
             xml:
               wrapped: true
               name: groups
           examples:
               - group:
-                  name: 'Parallel 2015/2016'
+                  name: "Parallel 2015/2016"
               - group:
-                  name: 'Parallel 2016/2015'
+                  name: "Parallel 2016/2015"
 
 
 
@@ -266,24 +266,24 @@ paths:
 definitions:
   OAuth:
     type: object
-    title: 'OAuth token respond'
-    description: 'Contain token necesery to access application.'
+    title: "OAuth token respond"
+    description: "Contain token necesery to access application."
     required:
       - token_type
       - access_token
     properties:
       token_type:
-        description: 'Type of token.'
-        default: 'bearer'
+        description: "Type of token."
+        default: "bearer"
         type: string
       access_token:
-        description: 'Token itself.'
+        description: "Token itself."
         type: string
     xml:
       name: oauth
     example:
-      token_type: 'bearer'
-      access_token: 'e72e16c7e42f292c6912e7710c838347ae178b4a'
+      token_type: "bearer"
+      access_token: "e72e16c7e42f292c6912e7710c838347ae178b4a"
 
 
 
