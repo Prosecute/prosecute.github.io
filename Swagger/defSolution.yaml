@@ -1,0 +1,51 @@
+definitions:
+  ObjectID:
+    type: integer
+    format: 'int32'
+    minimum: 0
+  ObjectName:
+    type: string
+    maxLenght: 256
+  Solution:
+    type: object
+    properties:
+      solution_id:
+        allOf:
+         - $ref: '#/definitions/ObjectID'
+         -  xml:
+              attribute: true
+      name:
+        allOf:
+         - $ref: '#/definitions/ObjectName'
+         - xml:
+            attribute: true
+    xml:
+      name: solution
+    example:
+      solution_id: 54
+      name: A07B01JAVA - Plagiarism check for programming homeworks.
+  Group:
+    type: object
+    required:
+      - name
+    properties:
+      group_id:
+        allOf:
+         - $ref: '#/definitions/ObjectID'
+         -  xml:
+              attribute: true
+      solution_id:
+        allOf:
+         - $ref: '#/definitions/ObjectID'
+         -  xml:
+              attribute: true
+      name:
+        allOf:
+         - $ref: '#/definitions/ObjectName'
+         - xml:
+            attribute: true
+    xml:
+      name: group
+    example:
+      name: Parallel 2015/2016
+
