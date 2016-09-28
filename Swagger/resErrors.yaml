@@ -3,23 +3,23 @@ definitions:
     allOf:
       - $ref: '#/definitions/Error'
       - example:
-          message: Authentication failed.
+          message: 'Authentication failed.'
   NotFound:
     allOf:
       - $ref: '#/definitions/Error'
       - example:
-          message: Object not found.
+          message: 'Object not found.'
   Unauthenticated:
     allOf:
       - $ref: '#/definitions/Error'
       - example:
-          message: Token expired or wasn´t send with request...
+          message: 'Token expired or wasn´t send with request...'
           code: 401
   Unauthorized:
     allOf:
       - $ref: '#/definitions/Error'
       - example:
-          message: Service does not have required permissions...
+          message: 'Service does not have required permissions...'
           code: 403
   Error:
     type: object

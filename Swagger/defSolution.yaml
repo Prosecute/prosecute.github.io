@@ -23,7 +23,7 @@ definitions:
       name: solution
     example:
       solution_id: 54
-      name: A07B01JAVA - Plagiarism check for programming homeworks.
+      name: 'A07B01JAVA - Plagiarism check for programming homeworks.'
   Group:
     type: object
     required:
@@ -47,5 +47,5 @@ definitions:
     xml:
       name: group
     example:
-      name: Parallel 2015/2016
+      name: 'Parallel 2015/2016'
 
