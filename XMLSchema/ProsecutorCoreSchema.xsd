@@ -212,7 +212,7 @@
             <xs:documentation>Category of trial.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="sourceCode"/>
+            <xs:enumeration value="sourcecode"/>
             <xs:enumeration value="text"/>
             <xs:enumeration value="image"/>
         </xs:restriction>
