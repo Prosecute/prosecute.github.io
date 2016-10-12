@@ -4,10 +4,17 @@
     targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1"
     xmlns="http://prosecute.github.io/XMLSchema">
     <xs:include schemaLocation="https://prosecute.github.io/XMLSchema/ProsecutorCoreSchema.xsd"/>
-    <xs:element name="Configuration" type="ConfigurationType"> </xs:element>
+    <xs:element name="Configuration" type="ConfigurationType"> 
+        <xs:annotation>
+            <xs:documentation xml:lang="en">Root element of input schema.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
     <xs:complexType name="ConfigurationType">
         <xs:all maxOccurs="1" minOccurs="0">
             <xs:element name="EntitiesLocations" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">Contains all entity locations and ensure that they use unique ID</xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence maxOccurs="1">
                         <xs:element name="EntitiesLocation" maxOccurs="unbounded" minOccurs="0"
@@ -20,6 +27,9 @@
                 </xs:unique>
             </xs:element>
             <xs:element name="Trials" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">Contains all trials and ensure that they use unique ID</xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence maxOccurs="1">
                         <xs:element name="Trial" type="TrialConfiguration" maxOccurs="unbounded"
@@ -28,9 +38,15 @@
                 </xs:complexType>
             </xs:element>
             <xs:element minOccurs="0" name="Options">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">Contains all options. Option can for instance be number of threads used for comparing,etc. </xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence maxOccurs="1" minOccurs="1">
                         <xs:element maxOccurs="unbounded" name="Option" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en">Option is standart name:value set, name is defined as attribute and value as content of element.</xs:documentation>
+                            </xs:annotation>
                             <xs:complexType>
                                 <xs:simpleContent>
                                     <xs:extension base="xs:string">
@@ -43,8 +59,20 @@
                 </xs:complexType>
             </xs:element>
         </xs:all>
-        <xs:attribute name="outputLocation" type="xs:anyURI"/>
-        <xs:attribute name="outputSourceCode" type="xs:boolean"/>
-        <xs:attribute name="projectName" type="xs:string"/>
+        <xs:attribute name="outputLocation" type="xs:anyURI">
+            <xs:annotation>
+                <xs:documentation xml:lang="en">Location where output (Result) file will be stored. This has to point to specific FILE! not directory</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="outputEntityLocations" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="en">If true, then will output all files inside of all entity locations to folder with @outputLocation file. !!!DANGEROUS AND SLOW!!!</xs:documentation>
+            </xs:annotation></xs:attribute>
+        <xs:attribute name="projectName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="en">Name of the project. It doesnt have any functional meaning. Mainly used in GUI </xs:documentation>
+            </xs:annotation>
+            
+        </xs:attribute>
     </xs:complexType>
 </xs:schema>
