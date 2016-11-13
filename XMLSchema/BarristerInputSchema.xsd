@@ -4,10 +4,19 @@
     targetNamespace="http://prosecute.github.io/XMLSchema" vc:minVersion="1.1"
     xmlns="http://prosecute.github.io/XMLSchema">
     <xs:include schemaLocation="https://prosecute.github.io/XMLSchema/ProsecutorCoreSchema.xsd"/>
-    <xs:element name="Configuration" type="ConfigurationType"> 
+    <xs:element name="Configuration">
         <xs:annotation>
             <xs:documentation xml:lang="en">Root element of input schema.</xs:documentation>
         </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ConfigurationType">
+                    <xs:all maxOccurs="1" minOccurs="0">
+                        <xs:element name="Test" type="xs:int"/>
+                    </xs:all>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
     </xs:element>
     <xs:complexType name="ConfigurationType">
         <xs:all maxOccurs="1" minOccurs="0">
@@ -67,12 +76,13 @@
         <xs:attribute name="outputEntityLocations" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation xml:lang="en">If true, then will output all files inside of all entity locations to folder with @outputLocation file. !!!DANGEROUS AND SLOW!!!</xs:documentation>
-            </xs:annotation></xs:attribute>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="projectName" type="xs:string">
             <xs:annotation>
                 <xs:documentation xml:lang="en">Name of the project. It doesnt have any functional meaning. Mainly used in GUI </xs:documentation>
             </xs:annotation>
-            
+
         </xs:attribute>
     </xs:complexType>
 </xs:schema>
