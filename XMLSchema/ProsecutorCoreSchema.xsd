@@ -162,6 +162,7 @@
                 <xs:documentation>Only used in GUI.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute default="100" name="weight" type="xs:positiveInteger"/>
     </xs:complexType>
     <xs:complexType name="ConsoleLine">
         <xs:simpleContent>

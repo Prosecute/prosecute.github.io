@@ -69,7 +69,7 @@
                 <xs:documentation xml:lang="en">Location where output (Result) file will be stored. This has to point to specific FILE! not directory</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="outputEntityLocations" type="xs:boolean">
+        <xs:attribute name="outputEntityLocations" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation xml:lang="en">If true, then will output all files inside of all entity locations to folder with @outputLocation file. !!!DANGEROUS AND SLOW!!!</xs:documentation>
             </xs:annotation>
