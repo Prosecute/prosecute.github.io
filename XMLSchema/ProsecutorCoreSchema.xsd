@@ -20,29 +20,16 @@
                             </xs:annotation>
                             <xs:complexType>
                                 <xs:all minOccurs="1">
-                                    <xs:element name="TokenMatches" minOccurs="1">
+                                    <xs:element name="Results" minOccurs="1">
                                         <xs:complexType>
-                                            <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                                                <xs:element name="RangeMatch" maxOccurs="unbounded"
-                                                  minOccurs="0">
-                                                  <xs:complexType>
-                                                  <xs:attribute name="startLineA" type="xs:int"/>
-                                                  <xs:attribute name="startLineB" type="xs:int"/>
-                                                  <xs:attribute name="startCharA" type="xs:int"/>
-                                                  <xs:attribute name="startCharB" type="xs:int"/>
-                                                  <xs:attribute name="endLineA" type="xs:int"/>
-                                                  <xs:attribute name="endLineB" type="xs:int"/>
-                                                  <xs:attribute name="endCharA" type="xs:int"/>
-                                                  <xs:attribute name="endCharB" type="xs:int"/>
-                                                  <xs:attribute name="tokenStartA" type="xs:int"
-                                                  use="required"/>
-                                                  <xs:attribute name="tokenStartB" type="xs:int"
-                                                  use="required"/>
-                                                  <xs:attribute name="tokenLength" type="xs:int"
-                                                  use="required"/>
-                                                  </xs:complexType>
+                                            <xs:choice maxOccurs="1" minOccurs="1">
+                                                <xs:element name="TokenCompare"
+                                                  type="pr:TokenCompareMatch">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Result of token compare match.</xs:documentation>
+                                                  </xs:annotation>
                                                 </xs:element>
-                                            </xs:sequence>
+                                            </xs:choice>
                                         </xs:complexType>
                                     </xs:element>
                                     <xs:element name="ConsoleOutput" maxOccurs="1" minOccurs="0">
@@ -82,19 +69,60 @@
         <xs:attribute name="refNameA" type="xs:normalizedString"/>
         <xs:attribute name="refNameB" type="xs:normalizedString"/>
         <xs:attribute name="refEntitiesLocationAID" type="xs:int"/>
-        <xs:attribute name="refSubmissionA" type="xs:anyURI"/>
         <xs:attribute name="refEntitiesLocationBID" type="xs:int"/>
+        <xs:attribute name="refSubmissionA" type="xs:anyURI"/>
         <xs:attribute name="refSubmissionB" type="xs:anyURI"/>
-        <xs:attribute name="match" type="pr:Percent"/>
+        <xs:attribute name="match" type="pr:Percent">
+            <xs:annotation>
+                <xs:documentation>Precalculated value from trialmatches.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="TokenCompareMatch">
+        <xs:sequence>
+            <xs:element name="RangeMatch" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:attribute name="fileA" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Partial URL from Submission folder.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="fileB" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Partial URL from Submission folder.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="startCharA" type="xs:int"/>
+                    <xs:attribute name="startCharB" type="xs:int"/>
+                    <xs:attribute name="endCharA" type="xs:int"/>
+                    <xs:attribute name="endCharB" type="xs:int"/>
+                    <xs:attribute name="tokenStartA" type="xs:int" use="required">
+                        <xs:annotation>
+                            <xs:documentation>First matching token in A.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="tokenStartB" type="xs:int" use="required">
+                        <xs:annotation>
+                            <xs:documentation>First matching token in B.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="tokenLength" type="xs:int" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Length of match.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
     <xs:complexType name="TrialConfiguration">
         <xs:all>
             <xs:element name="TrialType">
                 <xs:complexType>
-                    <xs:attribute name="category" type="pr:TrialCategory"/>
-                    <xs:attribute name="name" type="xs:string"/>
-                    <xs:attribute name="version" type="xs:string"/>
-                    <xs:attribute name="mode" type="xs:string"/>
+                    <xs:choice>
+                        <xs:element minOccurs="0" name="SourceCode" type="pr:SourceCodeType"/>
+                        <xs:element minOccurs="0" name="PlainText" type="pr:PlainTextType"/>
+                    </xs:choice>
                 </xs:complexType>
             </xs:element>
             <xs:element name="FileFilters" minOccurs="0">
@@ -112,6 +140,15 @@
                     </xs:choice>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="Options">
+                <xs:complexType>
+                    <xs:attribute default="false" name="seperateFiles" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>If false, then all source files,etc. in submission are marged together for comparison.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
         </xs:all>
         <xs:attribute name="trialID" type="xs:int">
             <xs:annotation>
@@ -123,20 +160,6 @@
         <xs:attribute name="trialName" type="xs:normalizedString">
             <xs:annotation>
                 <xs:documentation>Only used in GUI.</xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
-        <xs:attribute default="1" name="sensitivity" type="xs:float">
-            <xs:annotation>
-                <xs:documentation>
-                    Sensitivity of test. Value should be between 0.0 and 1.0. For exact usage look on specified trial mode.
-                </xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
-        <xs:attribute default="20" name="minMatch" type="xs:positiveInteger">
-            <xs:annotation>
-                <xs:documentation>
-                    For exact usage look on specified trial mode.
-                </xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
@@ -321,8 +344,7 @@
         <xs:attribute name="name" type="xs:normalizedString"/>
         <xs:attribute name="version" type="xs:string"/>
     </xs:complexType>
-    <xs:complexType name="ImageType"/>
-    <xs:complexType name="TextType"/>
+    <xs:complexType name="PlainTextType"/>
     <xs:complexType name="TokenCompareMode">
         <xs:attribute name="algorithm">
             <xs:simpleType>
@@ -331,8 +353,36 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
-        <xs:attribute name="sensitivity"/>
-        <xs:attribute name="minMatch"/>
+        <xs:attribute name="sensitivity" default="1" type="xs:float"/>
+        <xs:attribute name="minMatch" type="xs:positiveInteger" default="20"/>
+        <xs:attribute name="maxMatch" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>0 = ignored</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    <xs:complexType name="NamingAndCommentMode"/>
+    <xs:complexType name="NamingAndCommentMode">
+        <xs:sequence>
+            <xs:element name="Include">
+                <xs:complexType>
+                    <xs:attribute default="true" name="oneLineComment" type="xs:boolean"/>
+                    <xs:attribute default="true" name="multiLineComment" type="xs:boolean"/>
+                    <xs:attribute default="true" name="className" type="xs:boolean"/>
+                    <xs:attribute default="true" name="functionName" type="xs:boolean"/>
+                    <xs:attribute default="true" name="parameterName" type="xs:boolean"/>
+                    <xs:attribute default="true" name="classVariableName" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Also global variables for nonstrict OOP languages</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute default="true" name="namespaceName" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>Also packageName</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute default="true" name="innerVariableName" type="xs:boolean"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
