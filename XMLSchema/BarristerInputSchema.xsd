@@ -80,5 +80,10 @@
             </xs:annotation>
 
         </xs:attribute>
+        <xs:attribute name="rootDirectory" type="xs:anyURI">
+            <xs:annotation>
+                <xs:documentation>If not set, then directory of barrister will be used. Relative paths start at config file position.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 </xs:schema>
